@@ -27,7 +27,7 @@ void setup() {
     } 
 
 // Currently we assume the first device (#0) is the one we want 
-  mymididevice = RWMidi.getInputDevices()[1].createInput(this); 
+  mymididevice = RWMidi.getInputDevices()[0].createInput(this); 
 
 } 
  
@@ -36,22 +36,22 @@ void draw(){
 
 //Note ON recieved 
 void noteOnReceived(Note myreceivednote) {
-    println("note on " + myreceivednote.getPitch()+ "  " + myreceivednote.getVelocity());
+    println("note on " + myreceivednote.getChannel() + "  " + myreceivednote.getPitch()+ "  " + myreceivednote.getVelocity());
 }
 
 // Note Off recieved 
 void noteOffReceived(Note myreceivednote) {
-    println("note off " + myreceivednote.getVelocity());
+    println("note off " + myreceivednote.getChannel() + "  " + myreceivednote.getPitch()+ "  " + myreceivednote.getVelocity());
 }
 
 // Program Change recieved  
 void programChangeReceived(ProgramChange pc) {
-    println("note off " + pc.getNumber());
+    println("note off " + pc.getChannel() + "  " + pc.getNumber());
   }
 
 // Control Change recieved 
 void controllerChangeReceived(Controller cc) {
-  println("cc number is: " + cc.getCC() + "  " + "cc value is:  " + cc.getValue() );
+  println("cc channell is: " + cc.getChannel() + "  " + "cc number is: " + cc.getCC() + "  " + "cc value is:  " + cc.getValue() );
 }
 
 // System Exclusive recieved 
